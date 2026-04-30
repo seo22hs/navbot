@@ -1,0 +1,11 @@
+<launch>
+  <arg name="model" default="$(optenv TURTLEBOT3_MODEL burger)" />
+
+  <param name="model" value="$(arg model)" />
+
+  <node
+    pkg="exhibition_guide"
+    type="exhibition_teleop_key.py"
+    name="exhibition_teleop_keyboard"
+    output="screen" />
+</launch>
