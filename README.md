@@ -70,12 +70,20 @@
 - SLAM 실행용 launch 파일 추가
 - SLAM 으로 지도 생성 후 `maps/`에 저장
 
+### 5/6 완료 사항
+
+- 저장된 지도 기반 Navigation 실행 구성 추가
+- `launch/exhibition_navigation.launch` 작성
+- `launch/exhibition_navigation_rviz.launch` 작성
+- `param/`에 AMCL, move_base, costmap, DWA 설정 파일 추가
+- RViz에서 `2D Nav Goal`로 목적지 이동 테스트 완료
+- 로봇이 벽에 부딪히지 않고 경로를 따라 이동하는지 확인 완료
+
 ### 아직 필요한 핵심 구현
 
 <!-- - Gazebo 전시장 월드 제작
 - RViz 설정 파일 작성
 - SLAM 지도 생성 및 저장 -->
-- Navigation 실행 구성
 - 부스 좌표 설정 파일 작성
 - 목적지 이동 Python 노드 작성
 - 도착 확인 및 복귀 로직 작성
@@ -117,8 +125,9 @@
 <!-- - `README.md`를 기준 문서로 유지하면서 작업 내용 계속 기록
 - Gazebo에서 SLAM 실행 확인하기
 - 실제 맵 생성 후 `maps/`에 저장하기 -->
-- `scripts/`와 `config/`에 최소 실행 가능한 파일부터 추가하기
-- 부스 좌표 체계를 먼저 정하고 문서에 반영하기
+- RViz에서 A/B/C 부스와 안내 데스크 좌표 정하기
+- 부스 좌표 설정 파일 작성하기
+- 선택한 부스로 이동하는 Python 노드 작성하기
 
 <!-- ## 8. 비고
 
@@ -174,4 +183,3 @@ rosrun map_server map_saver -f src/exhibition_guide/maps/exhibition_map
 
 - `src/exhibition_guide/maps/exhibition_map.pgm`
 - `src/exhibition_guide/maps/exhibition_map.yaml` -->
-
