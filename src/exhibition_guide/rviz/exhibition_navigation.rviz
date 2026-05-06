@@ -1,0 +1,65 @@
+Panels:
+  - Class: rviz/Displays
+    Name: Displays
+Visualization Manager:
+  Class: ""
+  Displays:
+    - Alpha: 0.5
+      Class: rviz/Grid
+      Enabled: true
+      Name: Grid
+      Plane: XY
+      Value: true
+    - Alpha: 0.7
+      Class: rviz/Map
+      Enabled: true
+      Name: Map
+      Topic: /map
+      Value: true
+    - Class: rviz/RobotModel
+      Enabled: true
+      Name: RobotModel
+      Robot Description: robot_description
+      Value: true
+    - Alpha: 1
+      Class: rviz/LaserScan
+      Color: 255; 0; 0
+      Enabled: true
+      Name: LaserScan
+      Size (m): 0.03
+      Topic: /scan
+      Value: true
+    - Alpha: 1
+      Class: rviz/Path
+      Color: 25; 255; 0
+      Enabled: true
+      Name: GlobalPlan
+      Topic: /move_base/NavfnROS/plan
+      Value: true
+    - Alpha: 1
+      Class: rviz/Path
+      Color: 255; 127; 0
+      Enabled: true
+      Name: LocalPlan
+      Topic: /move_base/DWAPlannerROS/local_plan
+      Value: true
+  Enabled: true
+  Global Options:
+    Fixed Frame: map
+  Tools:
+    - Class: rviz/Interact
+    - Class: rviz/MoveCamera
+    - Class: rviz/SetInitialPose
+      Topic: /initialpose
+    - Class: rviz/SetGoal
+      Topic: /move_base_simple/goal
+  Value: true
+  Views:
+    Current:
+      Class: rviz/TopDownOrtho
+      Distance: 20
+      Name: Current View
+      Target Frame: map
+Window Geometry:
+  Height: 900
+  Width: 1200

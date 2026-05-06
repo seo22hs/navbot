@@ -1,0 +1,8 @@
+<launch>
+  <node
+    pkg="rviz"
+    type="rviz"
+    name="rviz"
+    output="screen"
+    args="-d $(find exhibition_guide)/rviz/exhibition_navigation.rviz" />
+</launch>
