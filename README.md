@@ -17,7 +17,7 @@
 4. 사용자가 `A/B/C/.. 부스` 중 하나를 선택
 5. 로봇이 해당 부스로 이동
 6. 도착 메시지 출력
-7. 출입구로 복귀
+7. 출입구로 복귀 or 대기 선택
 
 ## 3. 현재 워크스페이스 구조
 
@@ -33,42 +33,20 @@
 - `src/`: 필요 시 C++ 소스 또는 패키지 내부 모듈 저장
 - `worlds/`: Gazebo 전시장 월드 파일 저장
 
-## 4. 현재 진행 상황
+## 4. 진행 상황
 
-### 완료된 항목
+### 4/24 완료 사항
 
 - `navbot` 워크스페이스 생성
 - `exhibition_guide` ROS 패키지 생성
 - 기본 디렉터리 구조 생성
-- `worlds/exhibition_hall.world` 기본 전시장 월드 파일 작성
-- `launch/exhibition_world.launch` Gazebo 월드 실행용 launch 파일 작성
-- `launch/spawn_turtlebot3.launch` TurtleBot3 스폰용 launch 파일 작성
-- `launch/exhibition_world_with_robot.launch` 월드 + 로봇 통합 실행 launch 파일 작성
-- `launch/exhibition_slam.launch` SLAM 실행용 launch 파일 작성
-- `package.xml`에 일부 Python/Navigation 관련 의존성 선언
-  <!-- - `rospy`
-  - `actionlib`
-  - `gazebo_ros`
-  - `gmapping`
-  - `geometry_msgs`
-  - `joint_state_publisher`
-  - `map_server`
-  - `move_base_msgs`
-  - `robot_state_publisher`
-  - `std_msgs`
-  - `turtlebot3_description`
-  - `turtlebot3_slam`
-  - `turtlebot3_teleop`
-  - `xacro` -->
-
-### 4/24 완료 사항
-
-- 루트 구조와 패키지 뼈대는 준비됨
-- Gazebo에서 사용할 전시장 기본 월드 추가
-- Gazebo 월드 실행용 launch 파일 추가
-- TurtleBot3를 월드에 스폰하는 launch 파일 추가
-- SLAM 실행용 launch 파일 추가
-- SLAM 으로 지도 생성 후 `maps/`에 저장
+- `worlds/exhibition_hall.world` 기본 전시장 월드 작성
+- `launch/exhibition_world.launch` 작성
+- `launch/spawn_turtlebot3.launch` 작성
+- `launch/exhibition_world_with_robot.launch` 작성
+- `launch/exhibition_slam.launch` 작성
+- SLAM으로 지도 생성 후 `maps/`에 저장
+- 맵핑용 수동 조작 launch 및 Python 노드 작성
 
 ### 5/6 완료 사항
 
@@ -79,19 +57,36 @@
 - RViz에서 `2D Nav Goal`로 목적지 이동 테스트 완료
 - 로봇이 벽에 부딪히지 않고 경로를 따라 이동하는지 확인 완료
 
+### 5/7 완료 사항
+
+- `world1_boothlocation.png` 기준으로 A~M 부스 라벨 확인
+- `config/booth_locations.yaml`에 부스 좌표 초안 작성
+- `scripts/guide_to_booth.py` 목적지 이동 노드 작성
+- `launch/exhibition_booth_guide.launch` 작성
+- A~M 입력으로 `move_base`에 목적지 전달하는 기능 구현
+- 도착 후 입구 복귀 선택 기능 구현
+- 부스 좌표 테스트 및 일부 위치 조정
+
+### 5/14 완료 사항
+
+- A~M 부스 이동 시나리오 테스트 진행
+- I 부스 목표 좌표 조정
+- 기획서 기준 좌표 테스트 완료
+
+### 5/14 오류 해결 과정
+
+- I 부스 선택 시 로봇이 경로를 찾지 못하고 제자리에서 회전하는 문제가 발생
+- AI를 통한 수정 요청 및 오류 로그 전달만으로는 해결하지 못함
+- RViz의 `2D Nav Goal`로 I 부스 앞 목표 위치를 직접 지정한 뒤, `rostopic echo /amcl_pose -n 1` 명령어로 실제 도착 좌표를 확인
+- 확인한 좌표를 `config/booth_locations.yaml`의 I 부스 좌표로 반영한 결과, 로봇이 I 부스까지 정상적으로 도착
+
 ### 아직 필요한 핵심 구현
 
-<!-- - Gazebo 전시장 월드 제작
-- RViz 설정 파일 작성
-- SLAM 지도 생성 및 저장 -->
-- 부스 좌표 설정 파일 작성
-- 목적지 이동 Python 노드 작성
-- 도착 확인 및 복귀 로직 작성
-- 사용자 UI 연동
+- 하드웨어 제어
 
 ## 5. 개발 범위
 
-이번 프로젝트는 실제 하드웨어 제작보다 `시뮬레이션 기반 안내 로봇 구현`에 집중한다.
+이번 프로젝트는 실제 하드웨어 구현보다 `시뮬레이션 기반 안내 로봇 구현`에 집중한다.
 
 ### 포함 범위
 
@@ -108,26 +103,8 @@
 - 복잡한 동적 장애물 시뮬레이션
 - 실제 전시장 수준의 정밀 모델링
 
-<!-- ## 6. 권장 구현 순서
 
-1. `worlds/`에 단순 전시장 월드 작성
-2. Gazebo에서 TurtleBot3 실행 확인
-3. RViz 연동 및 센서 시각화 확인
-4. SLAM으로 지도 생성 후 `maps/`에 저장
-5. Navigation 실행 환경 구성
-6. `config/`에 부스 좌표 등록
-7. `scripts/`에 목적지 이동 노드 작성
-8. 도착 후 복귀 기능 추가
-9. 필요 시 간단한 Tkinter UI 연결 -->
 
-## 7. 당장 해야 할 일
-
-<!-- - `README.md`를 기준 문서로 유지하면서 작업 내용 계속 기록
-- Gazebo에서 SLAM 실행 확인하기
-- 실제 맵 생성 후 `maps/`에 저장하기 -->
-- RViz에서 A/B/C 부스와 안내 데스크 좌표 정하기
-- 부스 좌표 설정 파일 작성하기
-- 선택한 부스로 이동하는 Python 노드 작성하기
 
 <!-- ## 8. 비고
 
