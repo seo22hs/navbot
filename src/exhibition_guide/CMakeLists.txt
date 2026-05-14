@@ -163,6 +163,7 @@ include_directories(
 ## in contrast to setup.py, you can choose the destination
 catkin_install_python(PROGRAMS
   scripts/exhibition_teleop_key.py
+  scripts/guide_to_booth.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 

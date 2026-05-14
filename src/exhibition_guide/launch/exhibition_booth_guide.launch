@@ -1,0 +1,11 @@
+<launch>
+  <arg name="booth_file" default="$(find exhibition_guide)/config/booth_locations.yaml" />
+
+  <node
+    pkg="exhibition_guide"
+    type="guide_to_booth.py"
+    name="guide_to_booth"
+    output="screen">
+    <param name="booth_file" value="$(arg booth_file)" />
+  </node>
+</launch>
