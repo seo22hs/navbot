@@ -1,0 +1,72 @@
+entrance:
+  name: "Entrance"
+  x: 0.0
+  y: -6.0
+  yaw: 1.57
+
+booths:
+  A:
+    model: "left_booth_bottom"
+    x: -5.4
+    y: -3.3
+    yaw: 3.14
+  B:
+    model: "left_booth_mid"
+    x: -5.4
+    y: -0.3
+    yaw: 3.14
+  C:
+    model: "left_booth_top"
+    x: -5.4
+    y: 2.7
+    yaw: 3.14
+  D:
+    model: "top_booth_left"
+    x: -3.8
+    y: 3.4
+    yaw: 1.57
+  E:
+    model: "top_booth_center"
+    x: 0.0
+    y: 3.4
+    yaw: 1.57
+  F:
+    model: "top_booth_right"
+    x: 3.8
+    y: 3.4
+    yaw: 1.57
+  G:
+    model: "right_booth_top"
+    x: 5.4
+    y: 2.7
+    yaw: 0.0
+  H:
+    model: "right_booth_mid"
+    x: 5.4
+    y: -0.5
+    yaw: 0.0
+  I:
+    model: "right_booth_bottom"
+    x: 4.8
+    y: -3.3
+    yaw: 0.0
+  J:
+    model: "center_booth_left_top"
+    x: -2.0
+    y: 0.0
+    yaw: 1.57
+  K:
+    model: "center_booth_right_top"
+    x: 2.0
+    y: 0.0
+    yaw: 1.57
+  L:
+    model: "center_booth_left_bottom"
+    x: -2.0
+    y: -4.0
+    yaw: 1.57
+  M:
+    model: "center_booth_right_bottom"
+    x: 2.0
+    y: -4.0
+    yaw: 1.57
